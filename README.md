@@ -11,7 +11,9 @@
 # Installation
 You can install this package using go get:
 
-```go get github.com/StormCrownSC/forkJoinPool```
+```go
+go get github.com/StormCrownSC/forkJoinPool
+```
 
 ## Usage
 
@@ -41,7 +43,7 @@ func main() {
 
 	// Waiting for tasks to complete and shutting down the pool
     pool.Wait()
-	pool.Shutdown()
+    pool.Shutdown()
 
 }
 ```
