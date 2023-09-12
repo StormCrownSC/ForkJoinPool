@@ -1,6 +1,7 @@
 package forkJoinPool
 
 import (
+	"fmt"
 	"time"
 )
 
@@ -16,7 +17,15 @@ type Pool struct {
 	taskQueue  chan func()
 }
 
-func NewPool(numWorkers, QueueSize int) *Pool {
+func NewPool(numWorkers, QueueSize int) (*Pool, error) {
+	if numWorkers <= 0 {
+		return nil, fmt.Errorf("numWorkers must be greater than 0")
+	}
+
+	if QueueSize < 0 {
+		return nil, fmt.Errorf("QueueSize cannot be negative")
+	}
+
 	pool := &Pool{
 		NumWorkers: numWorkers,
 		QueueSize:  QueueSize,
@@ -32,7 +41,7 @@ func NewPool(numWorkers, QueueSize int) *Pool {
 		go worker.Start()
 	}
 
-	return pool
+	return pool, nil
 }
 
 func (worker *Worker) Start() {
