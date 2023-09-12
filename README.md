@@ -28,20 +28,20 @@ import (
 )
 
 func main() {
-	// Create a pool with 4 worker threads and a queue size of 10.
-	pool, err := forkJoinPool.NewPool(4, 10)
+    // Create a pool with 4 worker threads and a queue size of 10.
+    pool, err := forkJoinPool.NewPool(4, 10)
 
     if err != nil {
-		fmt.Println("Error:", err)
-		return
-	}
+        fmt.Println("Error:", err)
+        return
+    }
 
-	// Submit a task to the pool.
-	pool.Submit(func(args ...interface{}) {
-		fmt.Println("Task executed with args:", args)
-	}, i, "Hello")
+    // Submit a task to the pool.
+    pool.Submit(func(args ...interface{}) {
+        fmt.Println("Task executed with args:", args)
+    }, i, "Hello")
 
-	// Waiting for tasks to complete and shutting down the pool
+    // Waiting for tasks to complete and shutting down the pool
     pool.Wait()
     pool.Shutdown()
 
