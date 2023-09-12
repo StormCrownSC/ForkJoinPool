@@ -39,7 +39,7 @@ func main() {
     // Submit a task to the pool.
     pool.Submit(func(args ...interface{}) {
         fmt.Println("Task executed with args:", args)
-    }, i, "Hello")
+    }, 42, "Hello")
 
     // Waiting for tasks to complete and shutting down the pool
     pool.Wait()
